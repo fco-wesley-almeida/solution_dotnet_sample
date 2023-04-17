@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CorteAutomatico.Core\CorteAutomatico.Core.csproj" />
+      <ProjectReference Include="..\CorteAutomatico.Data\CorteAutomatico.Data.csproj" />
+      <ProjectReference Include="..\CorteAutomatico.Domain\CorteAutomatico.Domain.csproj" />
+      <ProjectReference Include="..\CorteAutomatico.Logging\CorteAutomatico.Logging.csproj" />
+    </ItemGroup>
+
+</Project>

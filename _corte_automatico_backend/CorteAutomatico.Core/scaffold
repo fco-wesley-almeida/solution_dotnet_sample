@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+#db_conn_str=$(jq -r '.profiles."CorteAutomatico.Application".environmentVariables.DATABASE_CONNECTION_STRING' ../CorteAutomatico.Application/Properties/launchSettings.json)
+db_conn_str="Host=corteautomatico-db.souenergy.com.br;Database=se_d02;Username=wmeida;Password=EylFE5dL1WsaVMfHFn2B;Pooling=true";
+dotnet ef dbcontext scaffold "$db_conn_str" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Entities --context-dir DatabaseContext --context CorteAutomaticoContext --schema public --force --verbose --data-annotations 
+
+for file in "Entities"/*; do
+    if [ -f "$file" ] && ! grep -q "IEntity" "$file"; then
+        sed -i -E 's/(public partial class \w+)/\1: IEntity/' "$file"
+    fi
+done
